@@ -1,6 +1,6 @@
-# New JavaScript Project
+# Conway's Game of Life
 
-An empty project with JavaScript testing tools preconfigured. Do whatever you like with it.
+Submission for [MOOC TDD course](https://tdd.mooc.fi/exercises/#exercise-6-conways-game-of-life).
 
 ## Prerequisites
 
