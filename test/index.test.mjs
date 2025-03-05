@@ -14,4 +14,11 @@ describe("CLI", () => {
       expect(output).toBe("Error: No argument provided or too many arguments.\n");
     });
   });
+
+  describe("app", () => {
+    test("prints the provided file path", () => {
+      const output = execSync("node ./src/index.mjs ./test/").toString();
+      expect(output).toBe("./test/\n");
+    });
+  });
 });
