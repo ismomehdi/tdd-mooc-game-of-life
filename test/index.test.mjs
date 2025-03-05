@@ -1,6 +1,6 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
-import { sum } from "../src/example.mjs";
+import { sum } from "../src/index.mjs";
 
 describe("Example test fixture", () => {
   test("Example test", () => {
