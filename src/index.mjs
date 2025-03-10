@@ -6,7 +6,7 @@ if (parseInt(process.argv.length) != 3) {
   run(process.argv[2]);
 }
 
-async function readFile(path) {
+export async function readFile(path) {
   const data = await fs.readFile(path, "utf8");
   const rows = data.split("\n");
 
@@ -17,7 +17,7 @@ async function readFile(path) {
       if (!isValidHeader(rows, i)) return "Error: Invalid header format.";
       break;
     } else {
-      return "Error: No header found in the file.";
+      throw new Error("Error: No header found in the file.");
     }
   }
 

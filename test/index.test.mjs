@@ -1,5 +1,6 @@
 import { execSync } from "child_process";
 import { describe, expect, test } from "vitest";
+import { readFile } from "../src/index.mjs";
 
 // strip excess whitespace and trim the string
 const normalize = (str) => str.replace(/\s+/g, " ").trim();
@@ -30,10 +31,13 @@ describe("CLI", () => {
         `),
       );
     });
+  });
 
-    test("prints an error if the file does not contain a header", () => {
-      const output = execSync("node ./src/index.mjs ./test/data/no-header.rle").toString();
-      expect(output).toBe("Error: No header found in the file.\n");
+  describe("readFile", () => {
+    test("throws an error if the file does not contain a header", async () => {
+      await expect(() => readFile("./test/data/no-header.rle")).rejects.toThrowError(
+        "Error: No header found in the file.",
+      );
     });
   });
 });
