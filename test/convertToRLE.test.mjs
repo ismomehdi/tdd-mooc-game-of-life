@@ -23,7 +23,7 @@ describe("convert grid to RLE", () => {
       [0, 0, 1],
       [1, 1, 1],
     ];
-    const expected = "bob$2bo$3o!";
+    const expected = "bo$2bo$3o!";
     expect(convertToRLE(grid)).toEqual(expected);
   });
 });

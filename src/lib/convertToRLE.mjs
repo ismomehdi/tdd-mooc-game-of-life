@@ -12,9 +12,17 @@ function convertToRLE(grid) {
         x++;
       }
       if (count > 1) {
-        grid[y][x] === 0 ? (decoded += `${count}b`) : (decoded += `${count}o`);
+        if (grid[y][x] === 0) {
+          x !== rowLength - 1 && (decoded += `${count}b`);
+        } else {
+          decoded += `${count}o`;
+        }
       } else {
-        grid[y][x] === 0 ? (decoded += `b`) : (decoded += `o`);
+        if (grid[y][x] === 0) {
+          x !== rowLength - 1 && (decoded += `b`);
+        } else {
+          decoded += `o`;
+        }
       }
 
       count = 1;
