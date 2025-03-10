@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 
-export async function readFile(path) {
+async function readFile(path) {
   const data = await fs.readFile(path, "utf8");
   const rows = data.split("\n");
   validateFile(rows);
@@ -23,3 +23,5 @@ function isValidHeader(row) {
   if (!headerPattern.test(row)) return false;
   return true;
 }
+
+export default readFile;

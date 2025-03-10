@@ -1,6 +1,5 @@
 import { execSync } from "child_process";
 import { describe, expect, test } from "vitest";
-import { getDimensions, parseRLE, patternToGrid, stripCommentsAndHeader } from "../src/lib/parseRLE.mjs";
 import { normalize } from "./lib/utils.mjs";
 
 describe("CLI", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { readFile } from "../src/lib/readFile.mjs";
+import readFile from "../src/lib/readFile.mjs";
 import { normalize } from "./lib/utils.mjs";
 
 describe("readFile", () => {
