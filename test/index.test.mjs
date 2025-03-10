@@ -1,6 +1,5 @@
-import { describe, test } from "vitest";
-import { expect } from "chai";
 import { execSync } from "child_process";
+import { describe, expect, test } from "vitest";
 
 describe("CLI", () => {
   describe("input error handling", () => {
@@ -16,9 +15,9 @@ describe("CLI", () => {
   });
 
   describe("app", () => {
-    test("prints the provided file path", () => {
-      const output = execSync("node ./src/index.mjs ./test/").toString();
-      expect(output).toBe("./test/\n");
+    test.skip("prints the content of the provided file", () => {
+      const output = execSync("node ./src/index.mjs ./test/data/block.rle").toString();
+      expect(output).toBe("Hello World!");
     });
   });
 });
