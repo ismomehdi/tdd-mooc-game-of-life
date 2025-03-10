@@ -2,6 +2,13 @@ function convertToRLE(grid) {
   return parsePattern(grid);
 }
 
+export function createHeader(grid) {
+  const y = grid.length;
+  const x = grid[0].length;
+
+  return `x = ${x}, y = ${y}`;
+}
+
 export function parsePattern(grid) {
   let decoded = "";
 

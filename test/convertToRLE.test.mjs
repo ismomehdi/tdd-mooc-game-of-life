@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import convertToRLE, { parsePattern } from "../src/lib/convertToRLE.mjs";
+import convertToRLE, { createHeader, parsePattern } from "../src/lib/convertToRLE.mjs";
 
 describe("convert grid to RLE", () => {
   describe("parsePattern()", () => {
@@ -26,6 +26,18 @@ describe("convert grid to RLE", () => {
       ];
       const expected = "bo$2bo$3o!";
       expect(parsePattern(grid)).toEqual(expected);
+    });
+  });
+
+  describe("createHeader()", () => {
+    test("creates a header based on the grid", () => {
+      const grid = [
+        [0, 1, 0, 1],
+        [0, 0, 1, 0],
+        [1, 1, 1, 0],
+      ];
+      const expected = "x = 4, y = 3";
+      expect(createHeader(grid)).toEqual(expected);
     });
   });
 });
