@@ -112,16 +112,24 @@ describe("run a generation", () => {
         [1, 0, 1],
         [0, 1, 0],
       ];
-
-      console.log(generate(grid));
-
       expect(generate(grid)).toEqual(expected);
     });
 
-    // todo
-    test.skip('generates the next generation of the "blinker" pattern', () => {
+    test('generates the next generation of the "blinker" pattern', () => {
       const grid = [[1, 1, 1]];
       const expected = [[1], [1], [1]];
+      expect(generate(grid)).toEqual(expected);
+    });
+
+    test('generates the next generation of the "block" pattern', () => {
+      const grid = [
+        [1, 1],
+        [1, 1],
+      ];
+      const expected = [
+        [1, 1],
+        [1, 1],
+      ];
       expect(generate(grid)).toEqual(expected);
     });
   });
