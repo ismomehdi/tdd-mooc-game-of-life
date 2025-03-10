@@ -1,8 +1,6 @@
 import { execSync } from "child_process";
 import { describe, expect, test } from "vitest";
-
-// strip excess whitespace and trim the string
-const normalize = (str) => str.replace(/\s+/g, " ").trim();
+import { normalize } from "./lib/utils.mjs";
 
 describe("CLI", () => {
   describe("input error handling", () => {
