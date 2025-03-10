@@ -3,10 +3,10 @@ export function parseRLE(RLE) {
   const rows = RLE.split("\n");
 
   // Strip comments and header
-  return removeCommentsAndHeader(rows);
+  return stripCommentsAndHeader(rows);
 }
 
-function removeCommentsAndHeader(rows) {
+function stripCommentsAndHeader(rows) {
   let strippedRLE = "";
   for (let i = 0; i < rows.length; i++) {
     if (!(rows[i].startsWith("#") || rows[i].startsWith("x"))) {
