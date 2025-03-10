@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { extendGrid, shrinkGrid } from "../src/lib/generate.mjs";
+import { countNeighbours, extendGrid, shrinkGrid } from "../src/lib/generate.mjs";
 
 describe("run a generation", () => {
   describe("extendGrid()", () => {
@@ -31,6 +31,43 @@ describe("run a generation", () => {
       ];
       const expected = [[1], [1], [1]];
       expect(shrinkGrid(grid)).toEqual(expected);
+    });
+  });
+
+  describe("countNeighbours()", () => {
+    test("counts neighbours of a cell", () => {
+      const grid = [
+        [0, 0, 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 1, 0],
+        [0, 1, 0, 0],
+        [0, 0, 0, 0],
+      ];
+
+      expect(countNeighbours(grid, 0, 0)).toBe(0);
+      expect(countNeighbours(grid, 0, 1)).toBe(0);
+      expect(countNeighbours(grid, 0, 2)).toBe(1);
+      expect(countNeighbours(grid, 0, 3)).toBe(0);
+
+      expect(countNeighbours(grid, 1, 0)).toBe(0);
+      expect(countNeighbours(grid, 1, 1)).toBe(1);
+      expect(countNeighbours(grid, 1, 2)).toBe(1);
+      expect(countNeighbours(grid, 1, 3)).toBe(1);
+
+      expect(countNeighbours(grid, 2, 0)).toBe(0);
+      expect(countNeighbours(grid, 2, 1)).toBe(2);
+      expect(countNeighbours(grid, 2, 2)).toBe(1);
+      expect(countNeighbours(grid, 2, 3)).toBe(1);
+
+      expect(countNeighbours(grid, 3, 0)).toBe(1);
+      expect(countNeighbours(grid, 3, 1)).toBe(0);
+      expect(countNeighbours(grid, 3, 2)).toBe(2);
+      expect(countNeighbours(grid, 3, 3)).toBe(0);
+
+      expect(countNeighbours(grid, 4, 0)).toBe(0);
+      expect(countNeighbours(grid, 4, 1)).toBe(1);
+      expect(countNeighbours(grid, 4, 2)).toBe(0);
+      expect(countNeighbours(grid, 4, 3)).toBe(0);
     });
   });
 

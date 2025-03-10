@@ -13,3 +13,12 @@ export function shrinkGrid(grid) {
   while (grid.every((row) => row[row.length - 1] === 0)) grid.forEach((row) => row.pop());
   return grid;
 }
+
+export function countNeighbours(grid, y, x) {
+  let count = 0;
+  if (y !== 0 && grid[y - 1][x] === 1) count++;
+  if (y !== grid.length - 1 && grid[y + 1][x] === 1) count++;
+  if (x !== 0 && grid[y][x - 1] === 1) count++;
+  if (x !== grid[0].length - 1 && grid[y][x + 1] === 1) count++;
+  return count;
+}
