@@ -1,7 +1,15 @@
 // todo
 export function parseRLE(RLE) {
-  // Strip comments and header
-  return stripCommentsAndHeader(RLE);
+  // b = dead cell
+  // o = alive cell
+  // $ = end of line
+}
+
+export function patternToGrid(pattern) {
+  // todo: maybe move this to some other place
+  // todo: validate/make sure x,y match the pattern
+  const rows = pattern.replace("!", "").split("$");
+  return rows.map((row) => row.split("").map((char) => (char === "o" ? 1 : 0)));
 }
 
 export function stripCommentsAndHeader(RLE) {

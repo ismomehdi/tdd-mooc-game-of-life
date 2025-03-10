@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 import { describe, expect, test } from "vitest";
-import { getDimensions, parseRLE, stripCommentsAndHeader } from "../src/lib/parseRLE.mjs";
+import { getDimensions, parseRLE, patternToGrid, stripCommentsAndHeader } from "../src/lib/parseRLE.mjs";
 import { normalize } from "./lib/utils.mjs";
 
 describe("CLI", () => {
@@ -54,6 +54,17 @@ describe("CLI", () => {
       expect(stripCommentsAndHeader(RLE)).toEqual(expected);
     });
 
+    test("converts pattern to grid", () => {
+      const pattern = "oo$oo!";
+      const grid = patternToGrid(pattern);
+      const expected = [
+        [1, 1],
+        [1, 1],
+      ];
+      expect(grid).toEqual(expected);
+    });
+
+    // todo
     test.skip("converts a block", () => {
       const RLE =
         `#N Block\n` +
