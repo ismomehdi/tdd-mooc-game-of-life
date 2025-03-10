@@ -52,6 +52,18 @@ describe("file parsing", () => {
       const expected = "oo$oo!";
       expect(decodeCharacterCounts(RLE)).toBe(expected);
     });
+
+    test("decodes blinker character counts", () => {
+      const RLE = "3o!";
+      const expected = "ooo!";
+      expect(decodeCharacterCounts(RLE)).toBe(expected);
+    });
+
+    test("decodes glider character counts", () => {
+      const RLE = "bob$2bo$3o!";
+      const expected = "bob$bbo$ooo!";
+      expect(decodeCharacterCounts(RLE)).toBe(expected);
+    });
   });
 
   // todo
