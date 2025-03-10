@@ -26,8 +26,6 @@ export function decodeCharacterCounts(RLE) {
 }
 
 export function patternToGrid(pattern) {
-  // todo: maybe move this to some other place
-  // todo: validate/make sure x,y match the pattern
   const rows = pattern.replace("!", "").split("$");
   return rows.map((row) => row.split("").map((char) => (char === "o" ? 1 : 0)));
 }
