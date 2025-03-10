@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { countNeighbours, extendGrid, shrinkGrid } from "../src/lib/generate.mjs";
+import { countNeighbours, extendGrid, generate, shrinkGrid } from "../src/lib/generate.mjs";
 
 describe("run a generation", () => {
   describe("extendGrid()", () => {
@@ -73,10 +73,10 @@ describe("run a generation", () => {
 
   // todo
   describe("generate()", () => {
-    test.skip("any live cell with fewer than two live neighbours dies", () => {
+    test("any live cell with fewer than two live neighbours dies", () => {
       const grid = [[1, 1]];
       const expected = [];
-      expect(generate(grid).toEqual(expected));
+      expect(generate(grid)).toEqual(expected);
     });
   });
 });

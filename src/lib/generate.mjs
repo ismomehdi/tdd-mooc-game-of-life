@@ -1,4 +1,7 @@
-export function generate(grid) {}
+export function generate(grid) {
+  const newGrid = grid.map((row, y) => row.map((_, x) => (countNeighbours(grid, y, x) < 2 ? 0 : 1)));
+  return shrinkGrid(newGrid);
+}
 
 export function extendGrid(grid) {
   const newGrid = grid.map((row) => [0, ...row, 0]);
@@ -7,10 +10,10 @@ export function extendGrid(grid) {
 }
 
 export function shrinkGrid(grid) {
-  while (grid[0].every((cell) => cell === 0)) grid.shift();
-  while (grid[grid.length - 1].every((cell) => cell === 0)) grid.pop();
-  while (grid.every((row) => row[0] === 0)) grid.forEach((row) => row.shift());
-  while (grid.every((row) => row[row.length - 1] === 0)) grid.forEach((row) => row.pop());
+  while (grid.length && grid[0].every((cell) => cell === 0)) grid.shift();
+  while (grid.length && grid[grid.length - 1].every((cell) => cell === 0)) grid.pop();
+  while (grid.length && grid.every((row) => row[0] === 0)) grid.forEach((row) => row.shift());
+  while (grid.length && grid.every((row) => row[row.length - 1] === 0)) grid.forEach((row) => row.pop());
   return grid;
 }
 
