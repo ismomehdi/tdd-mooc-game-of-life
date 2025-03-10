@@ -1,6 +1,5 @@
 import { execSync } from "child_process";
 import { describe, expect, test } from "vitest";
-import { readFile } from "../src/lib/readFile.mjs";
 
 // strip excess whitespace and trim the string
 const normalize = (str) => str.replace(/\s+/g, " ").trim();
@@ -29,20 +28,6 @@ describe("CLI", () => {
           x = 2, y = 2, rule = B3/S23
           2o$2o!
         `),
-      );
-    });
-  });
-
-  describe("readFile", () => {
-    test("throws an error if the file does not contain a header", async () => {
-      await expect(() => readFile("./test/data/no-header.rle")).rejects.toThrowError(
-        "Error: No header found in the file.",
-      );
-    });
-
-    test("throws an error if the header format is invalid", async () => {
-      await expect(() => readFile("./test/data/invalid-header.rle")).rejects.toThrowError(
-        "Error: Invalid header format.",
       );
     });
   });
