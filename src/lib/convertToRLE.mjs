@@ -2,7 +2,7 @@ function convertToRLE(grid) {
   return parsePattern(grid);
 }
 
-function parsePattern(grid) {
+export function parsePattern(grid) {
   let decoded = "";
 
   for (let y = 0; y < grid.length; y++) {
