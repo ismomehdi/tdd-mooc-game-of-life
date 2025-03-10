@@ -42,5 +42,32 @@ describe("CLI", () => {
 
       expect(getDimensions(RLE)).toEqual([2, 2]);
     });
+
+    test("strips comments and header", () => {
+      const RLE =
+        `#N Block\n` +
+        `#C An extremely common 4-cell still life.\n` +
+        `#C www.conwaylife.com/wiki/index.php?title=Block\n` +
+        `x = 2, y = 2, rule = B3/S23\n` +
+        `2o$2o!`;
+      const expected = "2o$2o!";
+      expect(parseRLE(RLE)).toEqual(expected);
+    });
+
+    // todo
+    test.skip("converts a block", () => {
+      const RLE =
+        `#N Block\n` +
+        `#C An extremely common 4-cell still life.\n` +
+        `#C www.conwaylife.com/wiki/index.php?title=Block\n` +
+        `x = 2, y = 2, rule = B3/S23\n` +
+        `2o$2o!`;
+      const expected = [
+        [1, 1],
+        [1, 1],
+      ];
+
+      expect(parseRLE(RLE)).toEqual(expected);
+    });
   });
 });
