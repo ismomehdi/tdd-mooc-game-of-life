@@ -16,9 +16,9 @@ describe("CLI", () => {
   });
 
   describe("app", () => {
-    test("prints grid for block", () => {
+    test("prints the second generation for block", () => {
       const output = execSync("node ./src/index.mjs ./test/data/block.rle").toString();
-      expect(normalize(output)).toBe(normalize(`[ [ 1, 1 ], [ 1, 1 ] ]`));
+      expect(normalize(output)).toBe(normalize(`2o$2o!`));
     });
   });
 });

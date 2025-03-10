@@ -1,3 +1,5 @@
+import convertToRLE from "./lib/convertToRLE.mjs";
+import generate from "./lib/generate.mjs";
 import parseRLE from "./lib/parseRLE.mjs";
 import readFile from "./lib/readFile.mjs";
 
@@ -11,7 +13,9 @@ export async function run(filePath) {
   try {
     const data = await readFile(filePath);
     const parsedData = parseRLE(data);
-    console.log(parsedData);
+    const generated = generate(parsedData);
+    const RLE = convertToRLE(generated);
+    console.log(RLE);
   } catch (err) {
     console.log(err);
   }
