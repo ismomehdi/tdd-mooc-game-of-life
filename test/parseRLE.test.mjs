@@ -14,15 +14,47 @@ const BlockRLE =
   `x = 2, y = 2, rule = B3/S23\n` +
   `2o$2o!`;
 
+const blinkerRLE =
+  `#N Blinker\n` +
+  `#O John Conway\n` +
+  `#C A period 2 oscillator that is the smallest and most common oscillator.\n` +
+  `#C www.conwaylife.com/wiki/index.php?title=Blinker\n` +
+  `x = 3, y = 1, rule = B3/S23\n` +
+  `3o!`;
+
+const gliderRLE =
+  `#N Glider\n` +
+  `#O Richard K. Guy\n` +
+  `#C The smallest, most common, and first discovered spaceship. Diagonal, has period 4 and speed c/4.\n` +
+  `#C www.conwaylife.com/wiki/index.php?title=Glider\n` +
+  `x = 3, y = 3, rule = B3/S23\n` +
+  `bob$2bo$3o!`;
+
 describe("file parsing", () => {
   describe("parseRLE()", () => {
-    test.skip("converts a block", () => {
+    test("converts a block", () => {
       const expected = [
         [1, 1],
         [1, 1],
       ];
 
       expect(parseRLE(BlockRLE)).toEqual(expected);
+    });
+
+    test("converts a glider", () => {
+      const expected = [
+        [0, 1, 0],
+        [0, 0, 1],
+        [1, 1, 1],
+      ];
+
+      expect(parseRLE(gliderRLE)).toEqual(expected);
+    });
+
+    test("converts a blinker", () => {
+      const expected = [[1, 1, 1]];
+
+      expect(parseRLE(blinkerRLE)).toEqual(expected);
     });
   });
 

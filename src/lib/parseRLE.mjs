@@ -1,8 +1,8 @@
-// todo
 export function parseRLE(RLE) {
-  // b = dead cell
-  // o = alive cell
-  // $ = end of line
+  const strippedRLE = stripCommentsAndHeader(RLE);
+  const decodedRLE = decodeCharacterCounts(strippedRLE);
+  const grid = patternToGrid(decodedRLE);
+  return grid;
 }
 
 export function decodeCharacterCounts(RLE) {
