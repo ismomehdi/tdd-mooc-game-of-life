@@ -16,7 +16,8 @@ export async function run(filePath, generationCount) {
     const data = await readFile(filePath);
     const parsedData = parseRLE(data);
 
-    let generation;
+    let generation = parsedData;
+
     for (let i = 0; i < generationCount; i++) {
       generation = generate(parsedData);
     }
