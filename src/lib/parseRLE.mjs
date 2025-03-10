@@ -5,6 +5,24 @@ export function parseRLE(RLE) {
   // $ = end of line
 }
 
+export function decodeCharacterCounts(RLE) {
+  let decoded = "";
+
+  let i = 0;
+  while (i < RLE.length) {
+    let count = "";
+
+    while (i < RLE.length && !isNaN(RLE[i])) {
+      count += RLE[i];
+      i++;
+    }
+
+    count = count ? parseInt(count) : 1;
+    decoded += RLE[i].repeat(count);
+    i++;
+  }
+}
+
 export function patternToGrid(pattern) {
   // todo: maybe move this to some other place
   // todo: validate/make sure x,y match the pattern
