@@ -13,6 +13,11 @@ describe("CLI", () => {
       const output = execSync("node ./src/index.mjs 1 2 3").toString();
       expect(output).toBe("Error: No argument provided or too many arguments.\n");
     });
+
+    test("outputs an error when generation count is NaN", () => {
+      const output = execSync("node ./src/index.mjs ./test/data/block.rle x").toString();
+      expect(output).toBe("Error: Invalid parameters, generation count should be a number.\n");
+    });
   });
 
   describe("app", () => {

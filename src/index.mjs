@@ -5,6 +5,8 @@ import readFile from "./lib/readFile.mjs";
 
 if (parseInt(process.argv.length) != 4) {
   console.log("Error: No argument provided or too many arguments.");
+} else if (isNaN(process.argv[3])) {
+  console.log("Error: Invalid parameters, generation count should be a number.");
 } else {
   run(process.argv[2], process.argv[3]);
 }
