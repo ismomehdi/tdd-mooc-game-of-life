@@ -40,4 +40,12 @@ describe("convert grid to RLE", () => {
       expect(createHeader(grid)).toEqual(expected);
     });
   });
+
+  describe("convertToHeader()", () => {
+    test("returns a string with the header & the pattern", () => {
+      const grid = [[1]];
+      const expected = "x = 1, y = 1\no!";
+      expect(convertToRLE(grid)).toEqual(expected);
+    });
+  });
 });

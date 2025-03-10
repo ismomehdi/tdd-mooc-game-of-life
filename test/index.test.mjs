@@ -23,15 +23,15 @@ describe("CLI", () => {
   describe("app", () => {
     test("prints the first generation for block", () => {
       const output = execSync("node ./src/index.mjs ./test/data/block.rle 1").toString();
-      expect(normalize(output)).toBe(normalize(`2o$2o!`));
+      expect(normalize(output)).toBe(normalize(`x = 2, y = 2\n2o$2o!`));
     });
     test("prints the first generation for blinker", () => {
       const output = execSync("node ./src/index.mjs ./test/data/blinker.rle 1").toString();
-      expect(normalize(output)).toBe(normalize(`o$o$o!`));
+      expect(normalize(output)).toBe(normalize(`x = 1, y = 3\no$o$o!`));
     });
     test("prints the first generation for glider", () => {
       const output = execSync("node ./src/index.mjs ./test/data/glider.rle 1").toString();
-      expect(normalize(output)).toBe(normalize(`obo$b2o$bo!`));
+      expect(normalize(output)).toBe(normalize(`x = 3, y = 3\nobo$b2o$bo!`));
     });
   });
 });

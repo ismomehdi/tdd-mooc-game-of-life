@@ -1,11 +1,10 @@
 function convertToRLE(grid) {
-  return parsePattern(grid);
+  return `${createHeader(grid)}\n${parsePattern(grid)}`;
 }
 
 export function createHeader(grid) {
   const y = grid.length;
   const x = grid[0].length;
-
   return `x = ${x}, y = ${y}`;
 }
 
