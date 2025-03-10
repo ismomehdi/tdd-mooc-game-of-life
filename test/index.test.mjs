@@ -16,17 +16,9 @@ describe("CLI", () => {
   });
 
   describe("app", () => {
-    test("prints the content of the provided file", () => {
+    test("prints grid for block", () => {
       const output = execSync("node ./src/index.mjs ./test/data/block.rle").toString();
-      expect(normalize(output)).toBe(
-        normalize(`
-          #N Block
-          #C An extremely common 4-cell still life.
-          #C www.conwaylife.com/wiki/index.php?title=Block
-          x = 2, y = 2, rule = B3/S23
-          2o$2o!
-        `),
-      );
+      expect(normalize(output)).toBe(normalize(`[ [ 1, 1 ], [ 1, 1 ] ]`));
     });
   });
 });

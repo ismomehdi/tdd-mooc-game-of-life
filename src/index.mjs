@@ -1,3 +1,4 @@
+import parseRLE from "./lib/parseRLE.mjs";
 import readFile from "./lib/readFile.mjs";
 
 if (parseInt(process.argv.length) != 3) {
@@ -9,7 +10,8 @@ if (parseInt(process.argv.length) != 3) {
 export async function run(filePath) {
   try {
     const data = await readFile(filePath);
-    console.log(data);
+    const parsedData = parseRLE(data);
+    console.log(parsedData);
   } catch (err) {
     console.log(err);
   }
