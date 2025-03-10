@@ -132,5 +132,19 @@ describe("run a generation", () => {
       ];
       expect(generate(grid)).toEqual(expected);
     });
+
+    test('generates the next generation of the "glider" pattern', () => {
+      const grid = [
+        [0, 1, 0],
+        [0, 0, 1],
+        [1, 1, 1],
+      ];
+      const expected = [
+        [1, 0, 1],
+        [0, 1, 1],
+        [0, 1, 0],
+      ];
+      expect(generate(grid)).toEqual(expected);
+    });
   });
 });
