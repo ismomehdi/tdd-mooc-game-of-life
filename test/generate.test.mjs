@@ -35,7 +35,7 @@ describe("run a generation", () => {
   });
 
   describe("countNeighbours()", () => {
-    test("counts neighbours of a cell", () => {
+    test("counts horizontal & vertical neighbours of a cell", () => {
       const grid = [
         [0, 0, 0, 0],
         [0, 0, 1, 0],
@@ -45,29 +45,39 @@ describe("run a generation", () => {
       ];
 
       expect(countNeighbours(grid, 0, 0)).toBe(0);
-      expect(countNeighbours(grid, 0, 1)).toBe(0);
+      expect(countNeighbours(grid, 0, 1)).toBe(1);
       expect(countNeighbours(grid, 0, 2)).toBe(1);
-      expect(countNeighbours(grid, 0, 3)).toBe(0);
+      expect(countNeighbours(grid, 0, 3)).toBe(1);
 
       expect(countNeighbours(grid, 1, 0)).toBe(0);
-      expect(countNeighbours(grid, 1, 1)).toBe(1);
+      expect(countNeighbours(grid, 1, 1)).toBe(2);
       expect(countNeighbours(grid, 1, 2)).toBe(1);
-      expect(countNeighbours(grid, 1, 3)).toBe(1);
+      expect(countNeighbours(grid, 1, 3)).toBe(2);
 
-      expect(countNeighbours(grid, 2, 0)).toBe(0);
-      expect(countNeighbours(grid, 2, 1)).toBe(2);
-      expect(countNeighbours(grid, 2, 2)).toBe(1);
-      expect(countNeighbours(grid, 2, 3)).toBe(1);
+      expect(countNeighbours(grid, 2, 0)).toBe(1);
+      expect(countNeighbours(grid, 2, 1)).toBe(3);
+      expect(countNeighbours(grid, 2, 2)).toBe(2);
+      expect(countNeighbours(grid, 2, 3)).toBe(2);
 
       expect(countNeighbours(grid, 3, 0)).toBe(1);
-      expect(countNeighbours(grid, 3, 1)).toBe(0);
+      expect(countNeighbours(grid, 3, 1)).toBe(1);
       expect(countNeighbours(grid, 3, 2)).toBe(2);
-      expect(countNeighbours(grid, 3, 3)).toBe(0);
+      expect(countNeighbours(grid, 3, 3)).toBe(1);
 
-      expect(countNeighbours(grid, 4, 0)).toBe(0);
+      expect(countNeighbours(grid, 4, 0)).toBe(1);
       expect(countNeighbours(grid, 4, 1)).toBe(1);
-      expect(countNeighbours(grid, 4, 2)).toBe(0);
+      expect(countNeighbours(grid, 4, 2)).toBe(1);
       expect(countNeighbours(grid, 4, 3)).toBe(0);
+    });
+
+    test("counts diagonal neighbours of a cell", () => {
+      const grid = [
+        [1, 0, 1],
+        [0, 0, 0],
+        [1, 0, 0],
+      ];
+
+      expect(countNeighbours(grid, 1, 1)).toBe(3);
     });
   });
 
@@ -80,33 +90,38 @@ describe("run a generation", () => {
 
     test("any dead cell with exactly three live neighbours becomes a live cell", () => {
       const grid = [
-        [1, 1],
-        [0, 1],
-        [1, 1],
+        [0, 0, 1],
+        [1, 0, 0],
+        [0, 0, 1],
       ];
 
-      const expected = [
-        [0, 1],
-        [1, 1],
-        [0, 1],
-      ];
+      const expected = [[1]];
 
       expect(generate(grid)).toEqual(expected);
     });
 
     test("any live cell with more than three live neighbours dies", () => {
       const grid = [
-        [1, 1, 1],
-        [1, 1, 1],
-        [1, 1, 1],
+        [1, 0, 1],
+        [0, 1, 0],
+        [1, 0, 1],
       ];
 
       const expected = [
-        [1, 1, 1],
+        [0, 1, 0],
         [1, 0, 1],
-        [1, 1, 1],
+        [0, 1, 0],
       ];
 
+      console.log(generate(grid));
+
+      expect(generate(grid)).toEqual(expected);
+    });
+
+    // todo
+    test.skip('generates the next generation of the "blinker" pattern', () => {
+      const grid = [[1, 1, 1]];
+      const expected = [[1], [1], [1]];
       expect(generate(grid)).toEqual(expected);
     });
   });

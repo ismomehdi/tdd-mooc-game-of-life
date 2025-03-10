@@ -1,8 +1,9 @@
 function generate(grid) {
-  const newGrid = grid.map((row, y) =>
+  const extendedGrid = extendGrid(grid);
+  const newGrid = extendedGrid.map((row, y) =>
     row.map((_, x) => {
-      const neighbourCount = countNeighbours(grid, y, x);
-      if (grid[y][x] === 1) return neighbourCount < 2 ? 0 : neighbourCount > 3 ? 0 : 1;
+      const neighbourCount = countNeighbours(extendedGrid, y, x);
+      if (extendedGrid[y][x] === 1) return neighbourCount < 2 ? 0 : neighbourCount > 3 ? 0 : 1;
       return neighbourCount === 3 ? 1 : 0;
     }),
   );
@@ -25,11 +26,27 @@ export function shrinkGrid(grid) {
 
 export function countNeighbours(grid, y, x) {
   let count = 0;
-  if (y !== 0 && grid[y - 1][x] === 1) count++;
-  if (y !== grid.length - 1 && grid[y + 1][x] === 1) count++;
-  if (x !== 0 && grid[y][x - 1] === 1) count++;
-  if (x !== grid[0].length - 1 && grid[y][x + 1] === 1) count++;
+  countVertical();
+  countHorizontal();
+  countDiagonal();
   return count;
+
+  function countHorizontal() {
+    if (x !== 0 && grid[y][x - 1] === 1) count++;
+    if (x !== grid[0].length - 1 && grid[y][x + 1] === 1) count++;
+  }
+
+  function countVertical() {
+    if (y !== 0 && grid[y - 1][x] === 1) count++;
+    if (y !== grid.length - 1 && grid[y + 1][x] === 1) count++;
+  }
+
+  function countDiagonal() {
+    if (y !== 0 && x !== 0 && grid[y - 1][x - 1] === 1) count++;
+    if (y !== 0 && x !== grid[0].length - 1 && grid[y - 1][x + 1] === 1) count++;
+    if (y !== grid.length - 1 && x !== 0 && grid[y + 1][x - 1] === 1) count++;
+    if (y !== grid.length - 1 && x !== grid[0].length - 1 && grid[y + 1][x + 1] === 1) count++;
+  }
 }
 
 export default generate;
