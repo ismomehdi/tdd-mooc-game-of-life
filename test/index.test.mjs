@@ -1,6 +1,9 @@
 import { execSync } from "child_process";
 import { describe, expect, test } from "vitest";
 
+// strip excess whitespace and trim the string
+const normalize = (str) => str.replace(/\s+/g, " ").trim();
+
 describe("CLI", () => {
   describe("input error handling", () => {
     test("outputs an error when no argument is provided", () => {
@@ -15,9 +18,17 @@ describe("CLI", () => {
   });
 
   describe("app", () => {
-    test.skip("prints the content of the provided file", () => {
+    test("prints the content of the provided file", () => {
       const output = execSync("node ./src/index.mjs ./test/data/block.rle").toString();
-      expect(output).toBe("Hello World!");
+      expect(normalize(output)).toBe(
+        normalize(`
+          #N Block
+          #C An extremely common 4-cell still life.
+          #C www.conwaylife.com/wiki/index.php?title=Block
+          x = 2, y = 2, rule = B3/S23
+          2o$2o!
+        `),
+      );
     });
   });
 });
