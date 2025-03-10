@@ -10,14 +10,14 @@ describe("CLI", () => {
     });
 
     test("outputs an error when provided more than one argument", () => {
-      const output = execSync("node ./src/index.mjs 1 2").toString();
+      const output = execSync("node ./src/index.mjs 1 2 3").toString();
       expect(output).toBe("Error: No argument provided or too many arguments.\n");
     });
   });
 
   describe("app", () => {
-    test("prints the second generation for block", () => {
-      const output = execSync("node ./src/index.mjs ./test/data/block.rle").toString();
+    test("prints the first generation for block", () => {
+      const output = execSync("node ./src/index.mjs ./test/data/block.rle 1").toString();
       expect(normalize(output)).toBe(normalize(`2o$2o!`));
     });
   });
