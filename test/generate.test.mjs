@@ -93,5 +93,21 @@ describe("run a generation", () => {
 
       expect(generate(grid)).toEqual(expected);
     });
+
+    test("any live cell with more than three live neighbours dies", () => {
+      const grid = [
+        [1, 1, 1],
+        [1, 1, 1],
+        [1, 1, 1],
+      ];
+
+      const expected = [
+        [1, 1, 1],
+        [1, 0, 1],
+        [1, 1, 1],
+      ];
+
+      expect(generate(grid)).toEqual(expected);
+    });
   });
 });
