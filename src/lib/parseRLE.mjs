@@ -21,6 +21,8 @@ export function decodeCharacterCounts(RLE) {
     decoded += RLE[i].repeat(count);
     i++;
   }
+
+  return decoded;
 }
 
 export function patternToGrid(pattern) {
