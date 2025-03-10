@@ -1,13 +1,13 @@
 // todo
 export function parseRLE(RLE) {
-  const rows = RLE.split("\n");
-
   // Strip comments and header
-  return stripCommentsAndHeader(rows);
+  return stripCommentsAndHeader(RLE);
 }
 
-function stripCommentsAndHeader(rows) {
+export function stripCommentsAndHeader(RLE) {
+  const rows = RLE.split("\n");
   let strippedRLE = "";
+
   for (let i = 0; i < rows.length; i++) {
     if (!(rows[i].startsWith("#") || rows[i].startsWith("x"))) {
       strippedRLE += rows[i];

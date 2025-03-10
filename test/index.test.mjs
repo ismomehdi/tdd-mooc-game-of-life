@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 import { describe, expect, test } from "vitest";
-import { getDimensions, parseRLE } from "../src/lib/parseRLE.mjs";
+import { getDimensions, parseRLE, stripCommentsAndHeader } from "../src/lib/parseRLE.mjs";
 import { normalize } from "./lib/utils.mjs";
 
 describe("CLI", () => {
@@ -51,10 +51,9 @@ describe("CLI", () => {
         `x = 2, y = 2, rule = B3/S23\n` +
         `2o$2o!`;
       const expected = "2o$2o!";
-      expect(parseRLE(RLE)).toEqual(expected);
+      expect(stripCommentsAndHeader(RLE)).toEqual(expected);
     });
 
-    // todo
     test.skip("converts a block", () => {
       const RLE =
         `#N Block\n` +
