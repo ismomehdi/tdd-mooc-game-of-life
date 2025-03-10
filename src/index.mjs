@@ -1,4 +1,4 @@
-import { readFile } from "./lib/readFile.mjs";
+import readFile from "./lib/readFile.mjs";
 
 if (parseInt(process.argv.length) != 3) {
   console.log("Error: No argument provided or too many arguments.");
