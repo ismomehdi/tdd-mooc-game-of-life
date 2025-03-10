@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { countNeighbours, extendGrid, generate, shrinkGrid } from "../src/lib/generate.mjs";
+import generate, { countNeighbours, extendGrid, shrinkGrid } from "../src/lib/generate.mjs";
 
 describe("run a generation", () => {
   describe("extendGrid()", () => {

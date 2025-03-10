@@ -1,4 +1,4 @@
-export function generate(grid) {
+function generate(grid) {
   const newGrid = grid.map((row, y) =>
     row.map((_, x) => {
       const neighbourCount = countNeighbours(grid, y, x);
@@ -31,3 +31,5 @@ export function countNeighbours(grid, y, x) {
   if (x !== grid[0].length - 1 && grid[y][x + 1] === 1) count++;
   return count;
 }
+
+export default generate;
