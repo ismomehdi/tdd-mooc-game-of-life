@@ -1,4 +1,4 @@
-export function parseRLE(RLE) {
+function parseRLE(RLE) {
   const strippedRLE = stripCommentsAndHeader(RLE);
   const decodedRLE = decodeCharacterCounts(strippedRLE);
   const grid = patternToGrid(decodedRLE);
@@ -46,3 +46,5 @@ export function getDimensions(RLE) {
   const dimensions = RLE.match(/x = (\d+), y = (\d+)/);
   return [parseInt(dimensions[1]), parseInt(dimensions[2])];
 }
+
+export default parseRLE;

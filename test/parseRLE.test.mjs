@@ -1,8 +1,7 @@
 import { describe, expect, test } from "vitest";
-import {
+import parseRLE, {
   decodeCharacterCounts,
   getDimensions,
-  parseRLE,
   patternToGrid,
   stripCommentsAndHeader,
 } from "../src/lib/parseRLE.mjs";
