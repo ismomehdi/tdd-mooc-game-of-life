@@ -9,24 +9,26 @@ if (parseInt(process.argv.length) != 3) {
 export async function readFile(path) {
   const data = await fs.readFile(path, "utf8");
   const rows = data.split("\n");
+  validateFile(rows);
+  return data;
+}
 
+function validateFile(rows) {
   for (let i = 0; i < rows.length; i++) {
-    if (rows[i].startsWith("#")) continue;
-
-    if (rows[i].startsWith("x")) {
-      if (!isValidHeader(rows, i)) throw new Error("Error: Invalid header format.");
+    const row = rows[i];
+    if (row.startsWith("#")) continue;
+    if (row.startsWith("x")) {
+      if (!isValidHeader(row)) throw new Error("Error: Invalid header format.");
       break;
     } else {
       throw new Error("Error: No header found in the file.");
     }
   }
-
-  return data;
 }
 
-function isValidHeader(rows, i) {
+function isValidHeader(row) {
   const headerPattern = /x\s*=\s*(\d+),\s*y\s*=\s*(\d+),\s*rule\s*=\s*([A-Za-z0-9/]+)/;
-  if (!headerPattern.test(rows[i])) return false;
+  if (!headerPattern.test(row)) return false;
   return true;
 }
 
