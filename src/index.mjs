@@ -7,16 +7,34 @@ if (parseInt(process.argv.length) != 3) {
 }
 
 async function readFile(path) {
-  try {
-    const data = await fs.readFile(path, "utf8");
-    return data;
-  } catch (err) {
-    console.error(err);
-    throw err;
+  const data = await fs.readFile(path, "utf8");
+  const rows = data.split("\n");
+
+  for (let i = 0; i < rows.length; i++) {
+    if (rows[i].startsWith("#")) continue;
+
+    if (rows[i].startsWith("x")) {
+      if (!isValidHeader(rows, i)) return "Error: Invalid header format.";
+      break;
+    } else {
+      return "Error: No header found in the file.";
+    }
   }
+
+  return data;
+}
+
+function isValidHeader(rows, i) {
+  const headerPattern = /x\s*=\s*(\d+),\s*y\s*=\s*(\d+),\s*rule\s*=\s*([A-Za-z0-9/]+)/;
+  if (!headerPattern.test(rows[i])) return false;
+  return true;
 }
 
 export async function run(filePath) {
-  const data = await readFile(filePath);
-  console.log(data);
+  try {
+    const data = await readFile(filePath);
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
 }

@@ -30,5 +30,10 @@ describe("CLI", () => {
         `),
       );
     });
+
+    test("prints an error if the file does not contain a header", () => {
+      const output = execSync("node ./src/index.mjs ./test/data/no-header.rle").toString();
+      expect(output).toBe("Error: No header found in the file.\n");
+    });
   });
 });
