@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 import { describe, expect, test } from "vitest";
-import { readFile } from "../src/index.mjs";
+import { readFile } from "../src/lib/readFile.mjs";
 
 // strip excess whitespace and trim the string
 const normalize = (str) => str.replace(/\s+/g, " ").trim();
