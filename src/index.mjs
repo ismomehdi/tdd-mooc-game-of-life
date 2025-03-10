@@ -19,7 +19,7 @@ export async function run(filePath, generationCount) {
     let generation = parsedData;
 
     for (let i = 0; i < generationCount; i++) {
-      generation = generate(parsedData);
+      generation = generate(generation);
     }
 
     const RLE = convertToRLE(generation);
