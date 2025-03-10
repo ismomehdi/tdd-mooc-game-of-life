@@ -71,11 +71,26 @@ describe("run a generation", () => {
     });
   });
 
-  // todo
   describe("generate()", () => {
     test("any live cell with fewer than two live neighbours dies", () => {
       const grid = [[1, 1]];
       const expected = [];
+      expect(generate(grid)).toEqual(expected);
+    });
+
+    test("any dead cell with exactly three live neighbours becomes a live cell", () => {
+      const grid = [
+        [1, 1],
+        [0, 1],
+        [1, 1],
+      ];
+
+      const expected = [
+        [0, 1],
+        [1, 1],
+        [0, 1],
+      ];
+
       expect(generate(grid)).toEqual(expected);
     });
   });

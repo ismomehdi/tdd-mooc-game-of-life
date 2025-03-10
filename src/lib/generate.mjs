@@ -1,5 +1,13 @@
 export function generate(grid) {
-  const newGrid = grid.map((row, y) => row.map((_, x) => (countNeighbours(grid, y, x) < 2 ? 0 : 1)));
+  const newGrid = grid.map((row, y) =>
+    row.map((_, x) => {
+      if (grid[y][x] === 1) {
+        return countNeighbours(grid, y, x) < 2 ? 0 : 1;
+      }
+
+      return countNeighbours(grid, y, x) === 3 ? 1 : 0;
+    }),
+  );
   return shrinkGrid(newGrid);
 }
 
