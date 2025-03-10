@@ -16,6 +16,9 @@ export function extendGrid(grid) {
   return [emptyRow, ...newGrid, emptyRow];
 }
 
+// This works for our purposes (for just computing the new pattern),
+// but would probably need to be changed, if we
+// wanted to place the pattern in a specific point in a grid.
 export function shrinkGrid(grid) {
   while (grid.length && grid[0].every((cell) => cell === 0)) grid.shift();
   while (grid.length && grid[grid.length - 1].every((cell) => cell === 0)) grid.pop();
