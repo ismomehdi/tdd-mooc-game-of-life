@@ -1,7 +1,8 @@
 function parseRLE(RLE) {
+  const [x, y] = getDimensions(RLE);
   const strippedRLE = stripCommentsAndHeader(RLE);
   const decodedRLE = decodeCharacterCounts(strippedRLE);
-  const grid = patternToGrid(decodedRLE);
+  const grid = patternToGrid(decodedRLE, x, y);
   return grid;
 }
 
@@ -25,9 +26,13 @@ export function decodeCharacterCounts(RLE) {
   return decoded;
 }
 
-export function patternToGrid(pattern) {
+export function patternToGrid(pattern, x, y) {
   const rows = pattern.replace("!", "").split("$");
-  return rows.map((row) => row.split("").map((char) => (char === "o" ? 1 : 0)));
+  const grid = Array.from({ length: y }, () => Array(x).fill(0));
+
+  rows.forEach((row, y) => row.split("").forEach((char, x) => (char === "o" ? (grid[y][x] = 1) : (grid[y][x] = 0))));
+
+  return grid;
 }
 
 export function stripCommentsAndHeader(RLE) {

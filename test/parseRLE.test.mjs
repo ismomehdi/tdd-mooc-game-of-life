@@ -73,7 +73,7 @@ describe("file parsing", () => {
   describe("patternToGrid()", () => {
     test("converts a decoded block pattern to grid", () => {
       const pattern = "oo$oo!"; // the character counts are decoded
-      const grid = patternToGrid(pattern);
+      const grid = patternToGrid(pattern, 2, 2);
       const expected = [
         [1, 1],
         [1, 1],
