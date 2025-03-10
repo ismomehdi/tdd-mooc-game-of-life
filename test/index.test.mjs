@@ -1,5 +1,6 @@
 import { execSync } from "child_process";
 import { describe, expect, test } from "vitest";
+import { getDimensions, parseRLE } from "../src/lib/parseRLE.mjs";
 import { normalize } from "./lib/utils.mjs";
 
 describe("CLI", () => {
@@ -27,6 +28,19 @@ describe("CLI", () => {
           2o$2o!
         `),
       );
+    });
+  });
+
+  describe("file parsing", () => {
+    test("parses dimensions", () => {
+      const RLE =
+        `#N Block\n` +
+        `#C An extremely common 4-cell still life.\n` +
+        `#C www.conwaylife.com/wiki/index.php?title=Block\n` +
+        `x = 2, y = 2, rule = B3/S23\n` +
+        `2o$2o!`;
+
+      expect(getDimensions(RLE)).toEqual([2, 2]);
     });
   });
 });
