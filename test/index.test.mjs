@@ -39,5 +39,11 @@ describe("CLI", () => {
         "Error: No header found in the file.",
       );
     });
+
+    test("throws an error if the header format is invalid", async () => {
+      await expect(() => readFile("./test/data/invalid-header.rle")).rejects.toThrowError(
+        "Error: Invalid header format.",
+      );
+    });
   });
 });

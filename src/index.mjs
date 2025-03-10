@@ -14,7 +14,7 @@ export async function readFile(path) {
     if (rows[i].startsWith("#")) continue;
 
     if (rows[i].startsWith("x")) {
-      if (!isValidHeader(rows, i)) return "Error: Invalid header format.";
+      if (!isValidHeader(rows, i)) throw new Error("Error: Invalid header format.");
       break;
     } else {
       throw new Error("Error: No header found in the file.");
