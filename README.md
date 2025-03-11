@@ -21,3 +21,9 @@ Run tests continuously
 Code reformat
 
     npm run format
+
+## Run
+
+In the root directory, enter
+
+    node ./src/index.mjs <path-to-RLE-file> <number-of-generations>
